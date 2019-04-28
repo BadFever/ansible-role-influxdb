@@ -59,7 +59,7 @@ influxdb_config_http_pprof_enabled: false
 influxdb_config_http_https_enabled: false
 influxdb_config_http_https_certificate: "/etc/ssl/influxdb.pem"
 ### Use a separate private key location.
-# influxdb_config_http_https_private_key: ""
+influxdb_config_http_https_private_key: ""
 influxdb_config_http_max_row_limit: 10000
 influxdb_config_http_realm: "InfluxDB"
 
