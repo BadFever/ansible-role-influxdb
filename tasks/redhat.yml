@@ -1,0 +1,29 @@
+---
+- name: RedHat | Adding EPEL Repo
+  yum:
+    name: epel-release
+    state: present
+  become: true
+
+- name: redhat | Installing Pre-Reqs
+  package:
+    name: "python-pip"
+    state: present
+  become: true
+
+- name: RedHat | Add yum repository
+  yum_repository:
+    name: influxdata
+    description: Influx
+    baseurl: "{{ influxdb_yum_baseurl }}"
+    enabled: true
+    gpgcheck: true
+    gpgkey: "https://repos.influxdata.com/influxdb.key"
+    state: present
+  become: true
+
+- name: RedHat | Install InfluxDB
+  package:
+    name: influxdb
+    state: present
+  become: true

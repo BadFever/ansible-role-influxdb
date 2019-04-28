@@ -1,0 +1,73 @@
+---
+# inflxdb-repository
+influxdb_yum_baseurl:
+  centos: https://repos.influxdata.com/rhel/{{ ansible_distribution_major_version }}/{{ ansible_architecture }}/stable
+  default: "https://repos.influxdata.com/{{ ansible_distribution|lower }}/{{ telegraf_redhat_releasever }}/$basearch/stable"
+  redhat: https://repos.influxdata.com/rhel/{{ ansible_distribution_major_version }}/{{ ansible_architecture }}/stable
+
+# influxdb-meta
+influxdb_config_meta_dir: "/var/lib/influxdb/meta"
+influxdb_config_meta_retention_autocreate: true
+influxdb_config_meta_logging_enabled: true
+influxdb_config_meta_pprof_enabled: false
+influxdb_config_meta_lease_duration: "1m0s"
+
+# influxdb-config-data
+influxdb_config_data_enabled: true
+influxdb_config_data_dir: "/var/lib/influxdb/data"
+influxdb_config_data_wal_dir: "/var/lib/influxdb/wal"
+influxdb_config_data_wal_logging_enabled: true
+influxdb_config_data_trace_logging_enabled: false
+influxdb_config_data_query_log_enabled: true
+influxdb_config_data_cache_max_memory_size: 524288000
+influxdb_config_data_cache_snapshot_memory_size: 26214400
+influxdb_config_data_cache_snapshot_write_cold_duration: "1h"
+influxdb_config_data_compact_min_file_count: 3
+influxdb_config_data_compact_full_write_cold_duration: "24h"
+influxdb_config_data_max_points_per_block: 1000
+
+# influxdb-config-coordinator
+influxdb_config_coordinator_write_timeout: "10s"
+influxdb_config_coordinator_max_concurrent_queries: 0
+influxdb_config_coordinator_query_timeout: "0"
+influxdb_config_coordinator_log_queries_after: "0"
+influxdb_config_coordinator_max_select_point:  0
+influxdb_config_coordinator_max_select_series: 0
+influxdb_config_coordinator_max_select_buckets: 0
+
+# influxdb-config-retention
+influxdb_config_retention_enabled: true
+influxdb_config_retention_check_interval: "30m"
+
+# inflxudb-config-share-precreation
+influxdb_config_share_precreation_enabled: true
+influxdb_config_share_precreation_check_interval: "10m"
+influxdb_config_share_precreation_advance_period: "30m"
+
+# influxdb-config-monitor
+influxdb_config_monitor_store_enabled: true
+influxdb_config_monitor_store_database: "_internal"
+influxdb_config_monitor_store_interval: "10s"
+
+# influxdb-config-http
+influxdb_config_http_enabled: true
+influxdb_config_http_bind_address: ":8086"
+influxdb_config_http_auth_enabled: false
+influxdb_config_http_log_enabled: true
+influxdb_config_http_write_tracing: false
+influxdb_config_http_pprof_enabled: false
+influxdb_config_http_https_enabled: false
+influxdb_config_http_https_certificate: "/etc/ssl/influxdb.pem"
+### Use a separate private key location.
+# influxdb_config_http_https_private_key: ""
+influxdb_config_http_max_row_limit: 10000
+influxdb_config_http_realm: "InfluxDB"
+
+# inflxudb-config-subscriber
+influxdb_config_subscriber_enabled: true
+influxdb_config_subscriber_http_timeout: "30s"
+
+# influxdb-config-continuous_queries
+inflxudb_config_continuous_queries_log_enabled: true
+inflxudb_config_continuous_queries_enabled: true
+inflxudb_config_continuous_queries_run_interval: "1s"

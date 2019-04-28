@@ -1,0 +1,139 @@
+### MANAGED BY {{ role_path|basename }} ANSIBLE ROLE ###
+### Welcome to the InfluxDB configuration file.
+
+reporting-disabled = true
+# hostname = "localhost"
+
+[meta]
+  dir = "{{ influxdb_config_meta_dir }}"
+  retention-autocreate = {{ influxdb_config_meta_retention_autocreate }}
+  logging-enabled = {{ influxdb_config_meta_logging_enabled }}
+  pprof-enabled = {{ influxdb_config_meta_pprof_enabled }}
+  lease-duration = "{{ influxdb_config_meta_lease_duration }}"
+
+[data]
+  enabled = {{ influxdb_config_data_enabled }}
+  dir = "{{ influxdb_config_data_dir }}"
+  wal-dir = "{{ influxdb_config_data_wal_dir }}"
+  wal-logging-enabled = {{ influxdb_config_data_wal_logging_enabled }}
+  # trace-logging-enabled = {{ influxdb_config_data_trace_logging_enabled }}
+  # query-log-enabled = {{ influxdb_config_data_query_log_enabled }}
+  # cache-max-memory-size = {{ influxdb_config_data_cache_max_memory_size }}
+  # cache-snapshot-memory-size = {{ influxdb_config_data_cache_snapshot_memory_size }}
+  # cache-snapshot-write-cold-duration = "{{ influxdb_config_data_cache_snapshot_write_cold_duration }}"
+  # compact-min-file-count = {{ influxdb_config_data_compact_min_file_count }}
+  # compact-full-write-cold-duration = "{{ influxdb_config_data_compact_full_write_cold_duration }}"
+  # max-points-per-block = {{ influxdb_config_data_max_points_per_block }}
+
+[coordinator]
+  write-timeout = "{{ influxdb_config_coordinator_write_timeout }}"
+  max-concurrent-queries = {{ influxdb_config_coordinator_max_concurrent_queries }}
+  query-timeout = "{{ influxdb_config_coordinator_query_timeout }}"
+  log-queries-after = "{{ influxdb_config_coordinator_log_queries_after }}"
+  max-select-point = {{ influxdb_config_coordinator_max_select_point }}
+  max-select-series = {{ influxdb_config_coordinator_max_select_series }}
+  max-select-buckets = {{ influxdb_config_coordinator_max_select_buckets }}
+
+### Controls the enforcement of retention policies for evicting old data.
+[retention]
+  enabled = {{ influxdb_config_retention_enabled }}
+  check-interval = "{{ influxdb_config_retention_check_interval }}"
+
+
+### Controls the precreation of shards, so they are available before data arrives.
+[shard-precreation]
+  enabled = {{ influxdb_config_share_precreation_enabled }}
+  check-interval = "{{ influxdb_config_share_precreation_check_interval }}"
+  advance-period = "{{ influxdb_config_share_precreation_advance_period }}"
+
+### Controls the system self-monitoring, statistics and diagnostics.
+[monitor]
+  store-enabled = {{ influxdb_config_monitor_store_enabled }}
+  store-database = "{{ influxdb_config_monitor_store_database }}"
+  store-interval = "{{ influxdb_config_monitor_store_interval }}"
+
+
+### Controls how the HTTP endpoints are configured. These are the primary
+### mechanism for getting data into and out of InfluxDB.
+[http]
+  enabled = {{ influxdb_config_http_enabled }}
+  bind-address = "{{ influxdb_config_http_bind_address }}"
+  auth-enabled = {{ influxdb_config_http_auth_enabled }}
+  log-enabled = {{ influxdb_config_http_log_enabled }}
+  write-tracing = {{ influxdb_config_http_write_tracing }}
+  pprof-enabled = {{ influxdb_config_http_pprof_enabled }}
+  https-enabled = {{ influxdb_config_http_https_enabled }}
+  https-certificate = "{{ influxdb_config_http_https_certificate }}"
+  ### Use a separate private key location.
+  # https-private-key = "{{ influxdb_config_http_https_private_key }}"
+  max-row-limit = {{ influxdb_config_http_max_row_limit }}
+  realm = "{{ influxdb_config_http_realm }}"
+
+### Controls the subscriptions, which can be used to fork a copy of all data
+### received by the InfluxDB host.
+[subsciber]
+  enabled = {{ influxdb_config_subscriber_enabled }}
+  http-timeout = "{{ influxdb_config_subscriber_http_timeout }}"
+
+### Controls one or many listeners for Graphite data.
+[[graphite]]
+  enabled = false
+  # database = "graphite"
+  # bind-address = ":2003"
+  # protocol = "tcp"
+  # consistency-level = "one"
+  # batch-size = 5000 # will flush if this many points get buffered
+  # batch-pending = 10 # number of batches that may be pending in memory
+  # batch-timeout = "1s" # will flush at least this often even if we haven't hit buffer limit
+  # udp-read-buffer = 0 # UDP Read buffer size, 0 means OS default. UDP listener will fail if set above OS max.
+  # separator = "."
+  # tags = ["region=us-east", "zone=1c"]
+  # templates = [
+  #   "*.app env.service.resource.measurement",
+  #   # Default template
+  #   "server.*",
+  # ]
+
+### Controls one or many listeners for collectd data.
+[[collectd]]
+  enabled = false
+  # bind-address = ""
+  # database = ""
+  # typesdb = ""
+  # batch-size = 1000 # will flush if this many points get buffered
+  # batch-pending = 5 # number of batches that may be pending in memory
+  # batch-timeout = "1s" # will flush at least this often even if we haven't hit buffer limit
+  # read-buffer = 0 # UDP Read buffer size, 0 means OS default. UDP listener will fail if set above OS max.
+
+### Controls one or many listeners for OpenTSDB data.
+[[opentsdb]]
+  enabled = false
+  # bind-address = ":4242"
+  # database = "opentsdb"
+  # retention-policy = ""
+  # consistency-level = "one"
+  # tls-enabled = false
+  # certificate= ""
+  # log-point-errors = true # Log an error for every malformed point.
+  # batch-size = 1000 # will flush if this many points get buffered
+  # batch-pending = 5 # number of batches that may be pending in memory
+  # batch-timeout = "1s" # will flush at least this often even if we haven't hit buffer limit
+
+
+### Controls the listeners for InfluxDB line protocol data via UDP.
+[[udp]]
+  enabled = false
+  # bind-address = ""
+  # database = "udp"
+  # retention-policy = ""
+  # batch-size = 1000 # will flush if this many points get buffered
+  # batch-pending = 5 # number of batches that may be pending in memory
+  # batch-timeout = "1s" # will flush at least this often even if we haven't hit buffer limit
+  # read-buffer = 0 # UDP Read buffer size, 0 means OS default. UDP listener will fail if set above OS max.
+  # udp-payload-size = 65536
+
+### Controls how continuous queries are run within InfluxDB.
+[continuous_queries]
+  log-enabled = {{inflxudb_config_continuous_queries_log_enabled}}
+  enabled = {{inflxudb_config_continuous_queries_enabled}}
+  run-interval = "{{inflxudb_config_continuous_queries_run_interval}}"

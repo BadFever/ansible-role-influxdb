@@ -1,0 +1,30 @@
+---
+- name: Install on RedHat
+  include: redhat.yml
+  when:
+    - ansible_os_family == "RedHat"
+
+- name: Configuring InfluxDB
+  template:
+    src: influxdb.conf.j2
+    dest: /etc/influxdb/influxdb.conf
+  become: true
+  notify:
+    - restart influxdb
+
+- name: Installing Python Modules
+  pip:
+    name: influxdb
+    state: present
+  become: true
+
+- name: Ensuring InfluxDB Is Running And Enabled On Boot
+  service:
+    name: influxdb
+    state: started
+    enabled: true
+  become: true
+
+- name: Waiting For InfluxDB
+  wait_for:
+    port: "{{ influxdb_config_http_bind_address }}"
