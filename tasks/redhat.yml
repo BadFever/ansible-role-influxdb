@@ -15,7 +15,7 @@
   yum_repository:
     name: influxdata
     description: Influx
-    baseurl: "{{ influxdb_yum_baseurl }}"
+    baseurl: "{{ influxdb_yum_baseurl[ansible_distribution|lower] | default(influxdb_yum_baseurl['default'])}}"
     enabled: true
     gpgcheck: true
     gpgkey: "https://repos.influxdata.com/influxdb.key"
