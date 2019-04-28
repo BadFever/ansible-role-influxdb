@@ -31,7 +31,7 @@ influxdb_config_coordinator_write_timeout: "10s"
 influxdb_config_coordinator_max_concurrent_queries: 0
 influxdb_config_coordinator_query_timeout: "0"
 influxdb_config_coordinator_log_queries_after: "0"
-influxdb_config_coordinator_max_select_point:  0
+influxdb_config_coordinator_max_select_point: 0
 influxdb_config_coordinator_max_select_series: 0
 influxdb_config_coordinator_max_select_buckets: 0
 
