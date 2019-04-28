@@ -24,7 +24,4 @@
     state: started
     enabled: true
   become: true
-
-- name: Waiting For InfluxDB
-  wait_for:
-    port: "{{ influxdb_config_http_bind_address_port }}"
+  
