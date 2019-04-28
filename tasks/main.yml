@@ -27,4 +27,4 @@
 
 - name: Waiting For InfluxDB
   wait_for:
-    port: "{{ influxdb_config_http_bind_address }}"
+    port: "{{ influxdb_config_http_bind_address_port }}"

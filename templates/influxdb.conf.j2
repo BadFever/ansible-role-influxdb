@@ -57,7 +57,7 @@ reporting-disabled = true
 ### mechanism for getting data into and out of InfluxDB.
 [http]
   enabled = {{ influxdb_config_http_enabled }}
-  bind-address = "{{ influxdb_config_http_bind_address }}"
+  bind-address = "{{ influxdb_config_http_bind_address }}:{{ influxdb_config_http_bind_address_port }}"
   auth-enabled = {{ influxdb_config_http_auth_enabled }}
   log-enabled = {{ influxdb_config_http_log_enabled }}
   write-tracing = {{ influxdb_config_http_write_tracing }}

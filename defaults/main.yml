@@ -51,7 +51,8 @@ influxdb_config_monitor_store_interval: "10s"
 
 # influxdb-config-http
 influxdb_config_http_enabled: true
-influxdb_config_http_bind_address: ":8086"
+influxdb_config_http_bind_address: ""
+influxdb_config_http_bind_address_port: 8086
 influxdb_config_http_auth_enabled: false
 influxdb_config_http_log_enabled: true
 influxdb_config_http_write_tracing: false
