@@ -1,5 +1,7 @@
 # ansible-role-influxdb
 
+[![Build Status](https://travis-ci.org/BadFever/ansible-role-influxdb.svg?branch=master)](https://travis-ci.org/BadFever/ansible-role-influxdb)
+
 Install and configure influxdb.
 
 ## Requirements
