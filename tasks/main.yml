@@ -10,7 +10,7 @@
     dest: /etc/influxdb/influxdb.conf
   become: true
   notify:
-    - restart influxdb
+    - Restart InfluxDB
 
 - name: Installing Python Modules
   pip:
